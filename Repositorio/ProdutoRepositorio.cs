@@ -16,5 +16,10 @@ namespace API_DoeMais.Repositorio
         {
            return _daoProduto.GetProdutos();
         }
+
+        public Produto GetProdutoId(int id)
+        {
+            return _daoProduto.GetProdutoId(id);
+        }
     }
 }
