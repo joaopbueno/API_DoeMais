@@ -21,5 +21,15 @@ namespace API_DoeMais.Repositorio
         {
             return _daoProduto.GetProdutoId(id);
         }
+
+        public void PostProduto(Produto prod)
+        {
+            _daoProduto.InsertProduto(prod);
+        }
+
+        public void DeleteProduto(int id)
+        {
+            _daoProduto.DeleteProduto(id);
+        }
     }
 }

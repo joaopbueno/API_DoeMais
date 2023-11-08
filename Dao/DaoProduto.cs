@@ -35,6 +35,7 @@ namespace API_DoeMais.Dao
                         }
                     }
                 }
+                conn.Close();
             }
 
             return prod;
@@ -48,6 +49,7 @@ namespace API_DoeMais.Dao
             using (SqlConnection conn = new SqlConnection(conection))
             {
                 conn.Open();
+
                 using (SqlCommand cmd = new SqlCommand($"SELECT * FROM Produto Where id = {id}", conn))
                 {
                     cmd.CommandType = CommandType.Text;
@@ -55,15 +57,18 @@ namespace API_DoeMais.Dao
                     {
                         if (reader != null)
                         {
-                            Produto produto = new Produto();
-                            produto.id = int.Parse(reader["id"].ToString());
-                            produto.nome = reader["nome"].ToString();
-                            produto.descricao = reader["descricao"].ToString();
-                            prod = produto;
-
+                            while (reader.Read())
+                            {
+                                Produto produto = new Produto();
+                                produto.id = int.Parse(reader["id"].ToString());
+                                produto.nome = reader["nome"].ToString();
+                                produto.descricao = reader["descricao"].ToString();
+                                prod = produto;
+                            }
                         }
                     }
                 }
+                conn.Close();
             }
 
             return prod;
@@ -76,7 +81,7 @@ namespace API_DoeMais.Dao
             {
                 conn.Open();
 
-                string insertQuery = "INSERT INTO Produto (nome, descricao) VALUES (@nome, @descricao)";
+                string insertQuery = "INSERT INTO Produto (Nome, Descricao) VALUES (@nome, @descricao)";
 
                 using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
                 {
@@ -85,6 +90,7 @@ namespace API_DoeMais.Dao
 
                     cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
         }
 
@@ -105,11 +111,12 @@ namespace API_DoeMais.Dao
 
                     cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
         }
 
         //EXCLUIR PRODUTO
-        public void DeleteProduto(Produto produto)
+        public void DeleteProduto(int id)
         {
             using (SqlConnection conn = new SqlConnection(conection))
             {
@@ -119,10 +126,11 @@ namespace API_DoeMais.Dao
 
                 using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
                 {
-                    cmd.Parameters.AddWithValue("@id", produto.descricao);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }
+                conn.Close();
             }
         }
     }

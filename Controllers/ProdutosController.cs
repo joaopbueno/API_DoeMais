@@ -9,11 +9,7 @@ namespace API_DoeMais.Controllers
     public class ProdutosController : ControllerBase
     {
         private ProdutoRepositorio _produtoRepositorio;
-        // CONFERIR SE ESTA FUNCIONANDO
-        //public void ValuesController()
-        //{
-        //    _produtoRepositorio = new ProdutoRepositorio();
-        //}
+
         // GET api/produtos
         [HttpGet]
         public ActionResult<IEnumerable<Produto>> GetProdutos()
@@ -30,10 +26,25 @@ namespace API_DoeMais.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult<string> Post(int id)
+        [HttpPost("{nome}/{descricao}")]
+        public ActionResult<bool> Post(string nome, string descricao)
         {
-            return "funcionou";
+            _produtoRepositorio = new ProdutoRepositorio();
+
+            Produto prod = new Produto();
+            prod.nome = nome;
+            prod.descricao = descricao;
+            _produtoRepositorio.PostProduto(prod);
+            return true;
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<bool> Delete(int id)
+        {
+            _produtoRepositorio = new ProdutoRepositorio();
+
+            _produtoRepositorio.DeleteProduto(id);
+            return true;
         }
     }
 }
