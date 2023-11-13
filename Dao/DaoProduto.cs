@@ -7,7 +7,9 @@ namespace API_DoeMais.Dao
     public class DaoProduto
     {
 
-        string conection = @"Server=DESKTOP-P314HRH\SQLEXPRESS;Database=DoeMais;User Id=sa; Password=teste123;TrustServerCertificate=true";
+        string conection = @"Data Source=localhost\MSSQLSERVER01; Initial Catalog=DoeMais; Integrated Security=True;TrustServerCertificate=true;";
+        
+        //Server=localhost\MSSQLSERVER01;Database=DoeMais;User Id = sa; Password=teste123;TrustServerCertificate=true
 
         //BUSCA TODOS OS PRODUTOS
         public List<Produto> GetProdutos()

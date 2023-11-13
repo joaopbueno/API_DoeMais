@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projeto\\DoeMais\\API\\API.csproj": {}
+    "C:\\Projeto\\API_DoeMais\\API.csproj": {}
   },
   "projects": {
-    "C:\\Projeto\\DoeMais\\API\\API.csproj": {
+    "C:\\Projeto\\API_DoeMais\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projeto\\DoeMais\\API\\API.csproj",
+        "projectUniqueName": "C:\\Projeto\\API_DoeMais\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Projeto\\DoeMais\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Projeto\\DoeMais\\API\\obj\\",
+        "projectPath": "C:\\Projeto\\API_DoeMais\\API.csproj",
+        "packagesPath": "C:\\Users\\Usuário\\.nuget\\packages\\",
+        "outputPath": "C:\\Projeto\\API_DoeMais\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuário\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.416\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
