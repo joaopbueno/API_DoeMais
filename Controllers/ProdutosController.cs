@@ -1,6 +1,8 @@
 ﻿using API_DoeMais.Model;
 using API_DoeMais.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 
 namespace API_DoeMais.Controllers
 {
@@ -26,15 +28,17 @@ namespace API_DoeMais.Controllers
         }
 
 
-        [HttpPost("{nome}/{descricao}")]
-        public ActionResult<bool> Post(string nome, string descricao)
+        [HttpPost("/post")]
+        public ActionResult<bool> Post([FromBody] JObject jsonData)
         {
             _produtoRepositorio = new ProdutoRepositorio();
 
-            Produto prod = new Produto();
-            prod.nome = nome;
-            prod.descricao = descricao;
-            _produtoRepositorio.PostProduto(prod);
+
+
+            //Produto prod = new Produto();
+            //prod.nome = nome;
+            //prod.descricao = descricao;
+            //_produtoRepositorio.PostProduto(prod);
             return true;
         }
 

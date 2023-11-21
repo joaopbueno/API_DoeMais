@@ -19,9 +19,17 @@ namespace API.Repositorio
             return _daoUsuario.GetUsuarios();
         }
 
-        //public Produto GetUsuarioId(int id)
-        //{
-        //    return _daoUsuario.GetUsuarioId(id);
-        //}
+        public Usuario GetUsuarioId(int id)
+        {
+            return _daoUsuario.GetUsuarioId(id);
+        }
+        public void PostUsuario(Usuario prod)
+        {
+            _daoUsuario.InsertUsuario(prod);
+        }
+        public void DeleteUsuario(int id)
+        {
+            _daoUsuario.DeleteUsuario(id);
+        }
     }
 }
