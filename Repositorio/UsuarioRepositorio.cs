@@ -25,19 +25,21 @@ namespace API.Repositorio
         {
             return _daoUsuario.GetUsuarioId(id);
         }
+
+        public bool GetUsuarioLogin(string email, string senha)
+        {
+            return _daoUsuario.GetUsuarioLogin(email, senha);
+        }
+
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usu)
         {
             return await _daoUsuario.InsertUsuario(usu);
         }
 
-        private bool Ok(object v)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void UpdateUsuario(Usuario usu)
+        public async Task<ActionResult<Usuario>> UpdateUsuario(Usuario usu)
         {
-            _daoUsuario.UpdateUsuario(usu);
+           return await _daoUsuario.UpdateUsuario(usu);
         }
 
         public void DeleteUsuario(int id)

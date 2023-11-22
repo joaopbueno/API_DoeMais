@@ -1,5 +1,4 @@
-﻿using API.DTO;
-using API.Model;
+﻿using API.Model;
 using API.Repositorio;
 using API_DoeMais.Model;
 using API_DoeMais.Repositorio;
@@ -32,13 +31,28 @@ namespace API.Controllers
             return _usuarioRepositorio.GetUsuarioId(id);
         }
 
+        [HttpGet("login/{email}/{senha}")]
+        public bool Get(string email, string senha)
+        {
+            _usuarioRepositorio = new UsuarioRepositorio();
+            return _usuarioRepositorio.GetUsuarioLogin(email, senha);
+        }
+
 
         [HttpPost]
-        public async Task<ActionResult<Usuario>> CriarEvento([FromBody] Usuario dtoUsuaro)
+        public async Task<ActionResult<Usuario>> PostUsuario([FromBody] Usuario dtoUsuaro)
         {
             _usuarioRepositorio = new UsuarioRepositorio();
 
             return Ok(await _usuarioRepositorio.PostUsuario(dtoUsuaro));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Usuario>> PutUsuario([FromBody] Usuario dtoUsuaro)
+        {
+            _usuarioRepositorio = new UsuarioRepositorio();
+
+            return Ok(await _usuarioRepositorio.UpdateUsuario(dtoUsuaro));
         }
 
         [HttpDelete("{id}")]

@@ -88,6 +88,34 @@ namespace API.Dao
             return usu;
         }
 
+        //LOGIN
+
+        public bool GetUsuarioLogin(string email, string senha)
+        {
+            Usuario usu = new Usuario();
+
+            using (SqlConnection conn = new SqlConnection(conection))
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand($"SELECT * FROM USUARIOS Where email = '{email}' AND senha = '{senha}'", conn))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
         //ADICIONAR USUARIO
         public async Task<ActionResult<Usuario>> InsertUsuario(Usuario usuario)
         {
@@ -119,7 +147,7 @@ namespace API.Dao
         }
 
         //ATUALIZAR USUARIO
-        public void UpdateUsuario(Usuario usuario)
+        public async Task<ActionResult<Usuario>> UpdateUsuario(Usuario usuario)
         {
             using (SqlConnection conn = new SqlConnection(conection))
             {
@@ -150,6 +178,7 @@ namespace API.Dao
                 }
                 conn.Close();
             }
+            return usuario;
         }
 
         //EXCLUIR USUARIO
