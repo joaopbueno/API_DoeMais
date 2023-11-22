@@ -10,12 +10,5 @@
         public string bairro { get; set; }
         public string telefone { get; set; }
         public string tipo_usuario { get; set; }
-
-        public Usuario() { }
-        public Usuario(string nome, string descricao)
-        {
-            this.nome = nome;
-            this.email = descricao;
-        }
     }
 }

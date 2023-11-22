@@ -1,7 +1,9 @@
 ﻿using API.Model;
 using API_DoeMais.Model;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace API.Dao
 {
@@ -87,7 +89,7 @@ namespace API.Dao
         }
 
         //ADICIONAR USUARIO
-        public void InsertUsuario(Usuario usuario)
+        public async Task<ActionResult<Usuario>> InsertUsuario(Usuario usuario)
         {
             using (SqlConnection conn = new SqlConnection(conection))
             {
@@ -105,6 +107,44 @@ namespace API.Dao
                     cmd.Parameters.AddWithValue("@bairro", usuario.bairro);
                     cmd.Parameters.AddWithValue("@telefone", usuario.telefone);
                     cmd.Parameters.AddWithValue("@tipo_usuario", usuario.tipo_usuario);
+
+                    cmd.ExecuteNonQuery();
+
+                    
+                }
+                conn.Close();
+            }
+
+            return usuario;
+        }
+
+        //ATUALIZAR USUARIO
+        public void UpdateUsuario(Usuario usuario)
+        {
+            using (SqlConnection conn = new SqlConnection(conection))
+            {
+                conn.Open();
+
+                string insertQuery = "UPDATE USUARIOS SET " +
+                    "nome = @nome, " +
+                    "email = @email " +
+                    "senha = @senha" +
+                    "cpf = @cpf" +
+                    "bairro = @bairro" +
+                    "telefone = @telefone" +
+                    "tipo_usuario = @tipo_usuario" +
+                    "WHERE id = @id";
+
+                using (SqlCommand cmd = new SqlCommand(insertQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nome", usuario.nome);
+                    cmd.Parameters.AddWithValue("@email", usuario.email);
+                    cmd.Parameters.AddWithValue("@senha", usuario.senha);
+                    cmd.Parameters.AddWithValue("@cpf", usuario.cpf);
+                    cmd.Parameters.AddWithValue("@bairro", usuario.bairro);
+                    cmd.Parameters.AddWithValue("@telefone", usuario.telefone);
+                    cmd.Parameters.AddWithValue("@tipo_usuario", usuario.tipo_usuario);
+                    cmd.Parameters.AddWithValue("@id", usuario.id);
 
                     cmd.ExecuteNonQuery();
                 }

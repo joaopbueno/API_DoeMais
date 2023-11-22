@@ -1,8 +1,11 @@
-﻿using API.Model;
+﻿using API.DTO;
+using API.Model;
 using API.Repositorio;
 using API_DoeMais.Model;
 using API_DoeMais.Repositorio;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Exchange.WebServices.Data;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace API.Controllers
@@ -21,6 +24,7 @@ namespace API.Controllers
             _usuarioRepositorio = new UsuarioRepositorio();
             return _usuarioRepositorio.GetUsuarios();
         }
+
         [HttpGet("{id}")]
         public Usuario Get(int id)
         {
@@ -29,18 +33,12 @@ namespace API.Controllers
         }
 
 
-        [HttpPost("/post")]
-        public ActionResult<bool> Post([FromBody] JObject jsonData)
+        [HttpPost]
+        public async Task<ActionResult<Usuario>> CriarEvento([FromBody] Usuario dtoUsuaro)
         {
             _usuarioRepositorio = new UsuarioRepositorio();
 
-
-
-            //Produto prod = new Produto();
-            //prod.nome = nome;
-            //prod.descricao = descricao;
-            //_produtoRepositorio.PostProduto(prod);
-            return true;
+            return Ok(await _usuarioRepositorio.PostUsuario(dtoUsuaro));
         }
 
         [HttpDelete("{id}")]

@@ -2,6 +2,8 @@
 using API.Model;
 using API_DoeMais.Dao;
 using API_DoeMais.Model;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace API.Repositorio
 {
@@ -23,13 +25,26 @@ namespace API.Repositorio
         {
             return _daoUsuario.GetUsuarioId(id);
         }
-        public void PostUsuario(Usuario prod)
+        public async Task<ActionResult<Usuario>> PostUsuario(Usuario usu)
         {
-            _daoUsuario.InsertUsuario(prod);
+            return await _daoUsuario.InsertUsuario(usu);
         }
+
+        private bool Ok(object v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateUsuario(Usuario usu)
+        {
+            _daoUsuario.UpdateUsuario(usu);
+        }
+
         public void DeleteUsuario(int id)
         {
             _daoUsuario.DeleteUsuario(id);
         }
+
+
     }
 }
